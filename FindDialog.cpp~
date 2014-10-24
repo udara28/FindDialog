@@ -1,0 +1,22 @@
+#include <QtGui>
+#include "FindDialog.h"
+
+findDialog::findDialog(QWidget *parent) : QDialog(parent)
+{	
+	line = new QLineEdit();
+	find = new QPushButton(tr("&Find"));
+	close = new QPushButton(tr("&Close"));
+	matchCase = new QCheckBox(tr("&Match Case"));
+	findNext = new QCheckBox(tr("Find &Next"));
+	lbl = new QLabel(tr("Find &what"));
+
+	QHBoxLayout *box = new QHBoxLayout();
+	box->addWidget(line);
+	box->addWidget(lbl);
+	box->addWidget(find);
+	box->addWidget(close);
+	box->addWidget(matchCase);
+	setLayout(box);
+	connect(line,textChanged(),this,findEnabled(const QString & findText));
+	
+}
